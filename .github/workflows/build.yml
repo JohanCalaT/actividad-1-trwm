@@ -1,0 +1,22 @@
+name: TWM CI
+
+on:
+  push:
+    branches: [ master, actions ]
+  pull_request:
+    branches: [ master, actions ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: node:22-alpine
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
